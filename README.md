@@ -1,18 +1,83 @@
-# React + Vite
+# ROCYGAMING Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website built with React + Vite, styled with Tailwind CSS, and a custom Three.js WebGL background.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React (Vite)
+- Tailwind CSS (PostCSS)
+- Three.js
+- ESLint
 
-## React Compiler
+## Getting Started
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### 1) Install
 
-Note: This will impact Vite dev & build performances.
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+### 2) Run Dev Server
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev
+```
+
+### 3) Production Build
+
+```bash
+npm run build
+```
+
+### 4) Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Scripts
+
+- `npm run dev` — start Vite dev server
+- `npm run build` — build for production
+- `npm run preview` — preview the production build locally
+- `npm run lint` — run ESLint
+
+## Project Structure
+
+```text
+src/
+	components/        # UI + effects (includes ThreeBackground)
+	sections/          # Page sections (Hero/About/Works/etc.)
+	config/siteData.js # Central content/config for the site
+	hooks/             # Reusable hooks
+	assets/            # Images
+```
+
+## Customize Content
+
+Most text/content is driven by a single config file:
+
+- Edit `src/config/siteData.js` to update:
+	- hero text + CTA links
+	- ticker items
+	- projects
+	- skills
+	- contact email + social links
+
+## Notes
+
+- Public assets are served from the root path.
+	- Example: use `/icons-pfp.png` (not `/public/icons-pfp.png`).
+
+## Deployment
+
+This is a standard Vite app; you can deploy the `dist/` output to any static host.
+
+Example (GitHub Pages / Netlify / Vercel):
+
+1. Run `npm run build`
+2. Deploy the generated `dist/` directory
+
+## License
+
+This project is for personal portfolio use.
