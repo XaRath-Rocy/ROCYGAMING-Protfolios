@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Parallax Star Background (box-shadow layers) */
+.starBg {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	overflow: hidden;
+	pointer-events: none;
+	background: radial-gradient(ellipse at bottom, var(--bg3) 0%, var(--bg) 100%);
+}
+
+/* ⭐ STARS BASE */
+#stars,
+#stars2,
+#stars3 {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* SMALL */
+#stars {
+	width: 1px;
+	height: 1px;
+	box-shadow:
+		100px 200px var(--neon),
+		400px 800px rgba(232, 240, 255, 0.95),
+		900px 1200px var(--neon),
+		1500px 400px rgba(232, 240, 255, 0.95),
+		1800px 1600px var(--neon);
+	animation: animStar 50s linear infinite;
+}
+
+/* MEDIUM */
+#stars2 {
+	width: 2px;
+	height: 2px;
+	box-shadow:
+		200px 600px var(--ember),
+		700px 1400px rgba(232, 240, 255, 0.9),
+		1300px 300px var(--ember),
+		1700px 900px rgba(232, 240, 255, 0.9);
+	animation: animStar 100s linear infinite;
+}
+
+/* BIG */
+#stars3 {
+	width: 3px;
+	height: 3px;
+	box-shadow:
+		300px 900px rgba(232, 240, 255, 0.9),
+		800px 400px var(--neon),
+		1400px 1300px rgba(232, 240, 255, 0.9);
+	animation: animStar 150s linear infinite;
+}
+
+/* ⭐ TITLE */
+#title {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+	transform: translateY(-50%);
+}
+
+#title span {
+	font-size: clamp(2rem, 6vw, 5rem);
+	font-weight: 300;
+	letter-spacing: 0.4em;
+	font-family: var(--mono);
+	background: linear-gradient(90deg, var(--neon), var(--ember));
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+#title .sub {
+	font-size: 0.8rem;
+	letter-spacing: 0.6em;
+	opacity: 0.6;
+	color: var(--ink2);
+}
+
+/* ⭐ ANIMATION */
+@keyframes animStar {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-2000px);
+	}
+}
