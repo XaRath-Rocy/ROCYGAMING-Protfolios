@@ -81,6 +81,11 @@ const GlobalStyle = () => (
         filter: drop-shadow(0 0 0 rgba(0,212,255,0));
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body::after { animation: none !important; }
+    }
     ::-webkit-scrollbar { width:3px; }
     ::-webkit-scrollbar-track { background:var(--bg); }
     ::-webkit-scrollbar-thumb { background:var(--neon); }
