@@ -1,28 +1,8 @@
-﻿import SectionLabel from "../components/SectionLabel";
+import SectionLabel from "../components/SectionLabel";
 import { useEffect, useRef, useState } from "react";
+import { siteData } from "../config/siteData";
 
-const steps = [
-  {
-    n: "01",
-    t: "Deep Listening",
-    b: "Every project starts with understanding your brand, audience, and the space between where you are and where you want to be.",
-  },
-  {
-    n: "02",
-    t: "Finding the Idea",
-    b: "From research to concept — the single powerful idea that becomes the spine of everything created.",
-  },
-  {
-    n: "03",
-    t: "Making it Real",
-    b: "Where craft meets vision. Every pixel, every word, every detail is deliberate. Nothing here is accidental.",
-  },
-  {
-    n: "04",
-    t: "Launch & Beyond",
-    b: "Delivering work that stands on its own — with systems that scale and results that last.",
-  },
-];
+const { steps } = siteData.process;
 
 export default function Process() {
   const [activeStep, setActiveStep] = useState(0);
@@ -107,21 +87,43 @@ export default function Process() {
             right: 0,
             height: 1,
             background: "linear-gradient(to right,var(--gold),rgba(200,160,80,.08))",
+            transition: "background 0.8s ease, box-shadow 0.8s ease",
+            boxShadow: activeStep > 0 ? "0 0 12px rgba(0, 212, 255, 0.4)" : "none",
           }}
         />
         {steps.map((s, i) => (
           (() => {
-            const isActive = i <= activeStep;
-            const delay = i * 0.15;
+            const isCurrent = i === activeStep;
+            const isPast = i < activeStep;
+            const isFuture = i > activeStep;
+            const delay = 0;
+
+            // Current step: full animation
+            // Past steps: faded
+            // Future steps: hidden
+            let opacity = 0;
+            let transform = "translateY(40px) scale(0.95)";
+
+            if (isCurrent) {
+              opacity = 1;
+              transform = "translateY(0) scale(1)";
+            } else if (isPast) {
+              opacity = 0.4;
+              transform = "translateY(0) scale(1)";
+            } else if (isFuture) {
+              opacity = 0;
+              transform = "translateY(60px) scale(0.9)";
+            }
 
             return (
           <div
             key={s.n}
             style={{
               paddingTop: 48,
-              opacity: isActive ? 1 : 0.2,
-              transform: isActive ? "translateY(0) scale(1)" : "translateY(40px) scale(0.95)",
-              transition: `opacity 900ms ${delay}s cubic-bezier(.25,.46,.45,.94),transform 900ms ${delay}s cubic-bezier(.25,.46,.45,.94)`,
+              opacity: opacity,
+              transform: transform,
+              transition: `opacity 1.2s ${delay}s cubic-bezier(.25,.46,.45,.94),
+                          transform 1.3s ${delay}s cubic-bezier(.25,.46,.45,.94)`,
               position: "relative",
             }}
           >
@@ -133,9 +135,12 @@ export default function Process() {
                 height: 16,
                 border: "1px solid var(--gold)",
                 background: "var(--bg2)",
-                transform: isActive ? "rotate(45deg) scale(1)" : "rotate(0deg) scale(0.6)",
-                opacity: isActive ? 1 : 0.3,
-                transition: `transform 900ms ${delay + 0.1}s cubic-bezier(.25,.46,.45,.94), opacity 900ms ${delay + 0.1}s cubic-bezier(.25,.46,.45,.94)`,
+                transform: isCurrent ? "rotate(45deg) scale(1)" : isPast ? "rotate(45deg) scale(1)" : "rotate(0deg) scale(0.6)",
+                opacity: isCurrent ? 1 : isPast ? 0.4 : 0,
+                boxShadow: isCurrent ? "0 0 10px rgba(224, 155, 54, 0.5)" : "none",
+                transition: `transform 1.1s ${delay}s cubic-bezier(.25,.46,.45,.94), 
+                            opacity 1.1s ${delay}s cubic-bezier(.25,.46,.45,.94),
+                            box-shadow 0.8s ${delay}s ease`,
               }}
             />
             <div
@@ -145,14 +150,23 @@ export default function Process() {
                 letterSpacing: ".3em",
                 color: "var(--ember)",
                 marginBottom: 18,
-                transform: isActive ? "translateY(0)" : "translateY(8px)",
-                opacity: isActive ? 1 : 0.2,
-                transition: `transform 900ms ${delay + 0.12}s cubic-bezier(.25,.46,.45,.94), opacity 900ms ${delay + 0.12}s cubic-bezier(.25,.46,.45,.94)`,
+                transform: isCurrent ? "translateY(0)" : isPast ? "translateY(0)" : "translateY(8px)",
+                opacity: isCurrent ? 1 : isPast ? 0.4 : 0,
+                transition: `transform 1.1s ${delay}s cubic-bezier(.25,.46,.45,.94), 
+                            opacity 1.1s ${delay}s cubic-bezier(.25,.46,.45,.94)`,
               }}
             >
               {s.n} —
             </div>
-            <div style={{ fontSize: "1.4rem", fontWeight: 300, marginBottom: 14 }}>{s.t}</div>
+            <div style={{ 
+              fontSize: "1.4rem", 
+              fontWeight: 300, 
+              marginBottom: 14,
+              transform: isCurrent ? "translateY(0)" : isPast ? "translateY(0)" : "translateY(6px)",
+              opacity: isCurrent ? 1 : isPast ? 0.4 : 0,
+              transition: `transform 1.2s ${delay}s cubic-bezier(.25,.46,.45,.94), 
+                          opacity 1.2s ${delay}s cubic-bezier(.25,.46,.45,.94)`,
+            }}>{s.t}</div>
             <p
               style={{
                 fontFamily: "var(--mono)",
@@ -160,6 +174,10 @@ export default function Process() {
                 letterSpacing: ".06em",
                 color: "var(--ink2)",
                 lineHeight: 2,
+                transform: isCurrent ? "translateY(0)" : isPast ? "translateY(0)" : "translateY(8px)",
+                opacity: isCurrent ? 0.95 : isPast ? 0.35 : 0,
+                transition: `transform 1.3s ${delay}s cubic-bezier(.25,.46,.45,.94), 
+                            opacity 1.3s ${delay}s cubic-bezier(.25,.46,.45,.94)`,
               }}
             >
               {s.b}
