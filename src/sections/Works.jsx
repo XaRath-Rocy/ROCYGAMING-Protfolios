@@ -1,42 +1,9 @@
 import { useState } from "react";
 
 import useInView from "../hooks/useInView";
+import { siteData } from "../config/siteData";
 
-const projects = [
-  {
-    num: "01",
-    title: "Noir Botanicals",
-    tags: ["Brand Identity", "Visual System"],
-    desc: "Complete brand overhaul for a luxury skincare line — logo, packaging, art direction & campaign visuals.",
-    color: "#1a0f08",
-    accent: "#c8a050",
-    large: true,
-  },
-  {
-    num: "02",
-    title: "Epoch Films",
-    tags: ["Motion", "3D Art"],
-    desc: "Cinematic title sequences and motion graphics for an independent film studio.",
-    color: "#080d14",
-    accent: "#6eb4d4",
-  },
-  {
-    num: "03",
-    title: "Terra Collective",
-    tags: ["Art Direction", "Campaign"],
-    desc: "Editorial art direction & photography curation for a sustainable fashion collective.",
-    color: "#0c100a",
-    accent: "#8ac870",
-  },
-  {
-    num: "04",
-    title: "Vesper Studio",
-    tags: ["Branding", "Strategy"],
-    desc: "Full brand strategy & identity design for a boutique creative agency launch.",
-    color: "#12080e",
-    accent: "#c86eb4",
-  },
-];
+const { projects } = siteData.works;
 
 function ProjectCard({ p, i }) {
   const [hovered, setHovered] = useState(false);
