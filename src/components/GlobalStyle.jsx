@@ -82,10 +82,15 @@ const GlobalStyle = () => (
       }
     }
       
-    @media (prefers-reduced-motion: reduce) {
+    @media (prefers-reduced-motion: reduce) and (min-width: 1025px) {
       html { scroll-behavior: auto; }
       body::after { animation: none !important; }
     }
+    @media (prefers-reduced-motion: reduce) and (max-width: 1024px) {
+      html { scroll-behavior: auto; }
+    }
+
+    
     ::-webkit-scrollbar { width:3px; }
     ::-webkit-scrollbar-track { background:var(--bg); }
     ::-webkit-scrollbar-thumb { background:var(--neon); }
