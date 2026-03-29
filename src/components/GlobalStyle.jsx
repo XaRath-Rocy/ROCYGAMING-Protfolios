@@ -54,33 +54,33 @@ const GlobalStyle = () => (
         radial-gradient(2.2px 2.2px at 26% 46%, rgba(232,240,255,0.32) 50%, transparent 52%),
         radial-gradient(2.2px 2.2px at 74% 78%, rgba(212,83,42,0.22) 50%, transparent 52%),
         radial-gradient(2.2px 2.2px at 92% 14%, rgba(232,240,255,0.26) 50%, transparent 52%);
-      animation: starDrift 28s linear infinite;
+      // animation: starDrift 28s linear infinite;
       transform: translate3d(0, 0, 0);
     }
 
-    @keyframes starDrift {
-      0% {
-        background-position:
-          0 0,
-          0 0,
-          0 0;
-        filter: drop-shadow(0 0 0 rgba(0,212,255,0));
-      }
-      50% {
-        background-position:
-          420px 560px,
-          -240px 360px,
-          120px -280px;
-        filter: drop-shadow(0 0 10px rgba(0,212,255,0.10));
-      }
-      100% {
-        background-position:
-          840px 1120px,
-          -480px 720px,
-          240px -560px;
-        filter: drop-shadow(0 0 0 rgba(0,212,255,0));
-      }
-    }
+    // @keyframes starDrift {
+    //   0% {
+    //     background-position:
+    //       0 0,
+    //       0 0,
+    //       0 0;
+    //     filter: drop-shadow(0 0 0 rgba(0,212,255,0));
+    //   }
+    //   50% {
+    //     background-position:
+    //       420px 560px,
+    //       -240px 360px,
+    //       120px -280px;
+    //     filter: drop-shadow(0 0 10px rgba(0,212,255,0.10));
+    //   }
+    //   100% {
+    //     background-position:
+    //       840px 1120px,
+    //       -480px 720px,
+    //       240px -560px;
+    //     filter: drop-shadow(0 0 0 rgba(0,212,255,0));
+    //   }
+    // }
       
     @media (prefers-reduced-motion: reduce) and (min-width: 1025px) {
       html { scroll-behavior: auto; }
@@ -89,8 +89,6 @@ const GlobalStyle = () => (
     @media (prefers-reduced-motion: reduce) and (max-width: 1024px) {
       html { scroll-behavior: auto; }
     }
-
-    
     ::-webkit-scrollbar { width:3px; }
     ::-webkit-scrollbar-track { background:var(--bg); }
     ::-webkit-scrollbar-thumb { background:var(--neon); }
